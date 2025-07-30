@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+header {
+    color: white;
+    background-color: rgb(38, 76, 115);
+    border-top: 1px solid gray;
+}
+
+ul {
+    list-style-type: none;
+}
+
+header li {
+    display: inline-block;
+    padding: 30px 50px;
+    font-size: x-large;
+}
+
+header li:first-child {
+    border-right: 1px solid white;
+}
+
+main {
+    padding: 10px;
+    border-top: 3px solid rgb(57, 116, 175);
+    border-bottom: 3px solid rgb(57, 116, 175);
+    border-left: 1px solid rgb(38, 76, 115);
+    border-right: 1px solid rgb(38, 76, 115);
+}
+
+.hr_fading {
+    width: 100%;
+    margin: 3px;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.hr_gray {
+    margin: 3px;
+    border: 0;
+    height: 3px;
+    background-image: linear-gradient(gray, gray, gray);
+}
+
+footer {
+    background-color: rgb(38, 76, 115);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: xx-large;
+    padding: 30px;
+}
+
+ul {
+    display: flex;
+    gap: 25px;
+}
+
+a {
+    color: white;
+}
+
+.uputstvo {
+    color: rgb(38, 76, 115);
+    margin: 5px;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table, tr, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 10px;
+    font-size: x-large;
+}
+
+table a {
+    color: purple;
+}
+
+table th {
+    background-color: lightgray;
+    padding: 5px 10px;
+}
+
+form {
+    margin-top: 5px;
+}
+
+input[type="button"] {
+    padding: 3px 10px;
+}
