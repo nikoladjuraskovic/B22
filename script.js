@@ -9,7 +9,7 @@ Potrebno je da se stranica refreshuje da bi se ponovo izvrsio pocetni deo koda.
 Tako da svaki put kada nastane promena u redovima tj. DOM stablu html stranice,
 a promena u ovom zadatku je brisanje redova,
 redovi moraju da se ucitaju ponovo jer su se promenili u medjuvremenu i zato ih dohvatamo uvek u okviru eventListener-a.
-Ovaj problem je resen u React biblioteci.
+
 */
 //const redovi = document.querySelectorAll(".red");
 const tabela = document.querySelector("#tabela");
