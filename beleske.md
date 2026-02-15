@@ -64,6 +64,77 @@ Ako koristiš live kolekcije, kod postaje jednostavniji jer ne moraš stalno doh
 
 Ako želiš, mogu ti napraviti kompletan tvoj JS zadatak sa tabelom koristeći getElementsByTagName, gde nije potrebno stalno ponovo učitavati redove, i sve dugmad bi radila kako treba.
 
+Rešenje sa live kolekcijom tj. sa getElementsByTagName:
+const tasterSortiraj = document.querySelector("#sortiraj");
+const neparni = document.querySelector("#neparni");
+const polozili = document.querySelector("#polozili");
+const nisuPolozili = document.querySelector("#nisu_polozili");
+const izdvojPolozili = document.querySelector("#izdvoj_polozili");
+
+const tabela = document.querySelector("#tabela");
+const tbody = tabela.tBodies[0]; // prvi tbody (postoji u HTML-u)
+
+// Promenljive za naizmenično sortiranje po poenima
+let rastuciPoeni = true;
+
+// Funkcija za sortiranje po poenima (opadajuće ili rastuće)
+function sortirajRedove() {
+const redovi = Array.from(tbody.getElementsByTagName("tr")).slice(1); // preskoči header
+const sortiraniNiz = redovi.sort((a, b) => {
+const poeniA = parseInt(a.children[4].textContent);
+const poeniB = parseInt(b.children[4].textContent);
+return rastuciPoeni ? poeniA - poeniB : poeniB - poeniA;
+});
+
+    // Dodajemo redove u tbody (browser ih automatski premesti)
+    for (let red of sortiraniNiz) {
+        tbody.appendChild(red);
+    }
+
+    rastuciPoeni = !rastuciPoeni; // obrni smjer za sledeći klik
+
+}
+
+// Sortiranje dugme
+tasterSortiraj.addEventListener("click", sortirajRedove);
+
+// Oboj neparne redove
+neparni.addEventListener("click", function () {
+const redovi = tbody.getElementsByTagName("tr");
+for (let i = 1; i < redovi.length; i++) { // preskoči header
+redovi[i].style.backgroundColor = (i % 2 === 1) ? "gray" : "white";
+}
+});
+
+// Označi one koji su položili
+polozili.addEventListener("click", function () {
+const redovi = tbody.getElementsByTagName("tr");
+for (let i = 1; i < redovi.length; i++) {
+const poeni = parseInt(redovi[i].children[4].textContent);
+redovi[i].style.color = poeni >= 50 ? "green" : redovi[i].style.color;
+}
+});
+
+// Označi one koji nisu položili
+nisuPolozili.addEventListener("click", function () {
+const redovi = tbody.getElementsByTagName("tr");
+for (let i = 1; i < redovi.length; i++) {
+const poeni = parseInt(redovi[i].children[4].textContent);
+redovi[i].style.color = poeni < 50 ? "red" : redovi[i].style.color;
+}
+});
+
+// Izdvoji samo one koji su položili (brise ostale)
+izdvojPolozili.addEventListener("click", function () {
+const redovi = tbody.getElementsByTagName("tr"); // live kolekcija
+for (let i = redovi.length - 1; i > 0; i--) { // unazad zbog brisanja
+const poeni = parseInt(redovi[i].children[4].textContent);
+if (poeni < 50) {
+tbody.removeChild(redovi[i]);
+}
+}
+});
+
 ---
 
 - **Problem sa NodeList/HTMLCollection** u običnom JS-u: DOM se menja, pa moraš stalno ponovo dohvatati elemente.
